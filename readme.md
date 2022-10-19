@@ -7,10 +7,24 @@ The app provide an API that can be used in two different ways. As a simple place
 visit localhost:3000/api/images?filename=imageName&width=number_in_pixels&height=number_in_pixels
 ```
 
+> Note! ejs is used as engine template for this express application in order to render errors in a decent view.
 
-## Available images to choose from:
+### Available images to choose from:
 - encenadaport.jpg
 - fjord.jpg
 - icelandwaterfall.jpg
 - palmtunnel.jpg
 - santamonica.jpg
+
+
+### To run unit tests do the following
+
+- install all production dependencies using `npm install`
+- install develpment dependencies using `npm install --only=dev`
+- run `npm run tests`
+
+### To build the source code do the following
+- run `npm run build`
+
+### To start the application run the following
+- run `npm run start`
