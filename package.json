@@ -6,9 +6,9 @@
     "scripts": {
         "start": "node dist/index",
         "start-dev": "nodemon src/index.ts -L",
-        "test": "npm run build && npm run jasmine --random=false",
+        "test": "npm run build && npm run jasmine",
         "build": "npx tsc",
-        "jasmine": "jasmine",
+        "jasmine": "jasmine --random=false",
         "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
         "lint": "eslint src/**/*.ts"
     },

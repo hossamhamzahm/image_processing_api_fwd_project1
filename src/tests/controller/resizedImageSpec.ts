@@ -53,7 +53,7 @@ describe('Valid Requests', () => {
                 });
         });
 
-        it('checks if the image cached or not', async() => {
+        it('checks if sharp created an image and cached or not', async() => {
             const resized_img_list: string[] = await read_resized_imgs();
             const resized_img_name: string = 'icelandwaterfall.jpg' + '_' + '200' + 'x' + '200';
 
