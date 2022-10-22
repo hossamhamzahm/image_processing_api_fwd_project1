@@ -1,7 +1,8 @@
 import request from 'supertest';
 import app from '../../app';
 import { read_resized_imgs } from '../../utils/read_imgs';
-
+import sharp  from 'sharp';
+import path from 'path';
 
 
 describe('Invalid Query string parameters', () => {
@@ -35,6 +36,13 @@ describe('Invalid Query string parameters', () => {
                     return done();
                 });
         });
+
+        it('should result in wrong path error', async() => {
+            const read_path = path.join(__dirname, '..', '..', '..', 'public', 'images', 'fjsord.jpg');
+                await expectAsync(sharp(read_path)
+                .rotate().resize(100, 100)
+                .jpeg({ mozjpeg: true }).toBuffer()).toBeRejected()
+        })
     });
 });
 
@@ -42,6 +50,14 @@ describe('Invalid Query string parameters', () => {
 
 describe('Valid Requests', () => {
     describe('resized version creation', () => {
+        const read_path = path.join(__dirname, '..', '..', '..', 'public', 'images', 'fjord.jpg');
+        it('should test if resized image created successfully without throwing errors', async() => {
+            await expectAsync( sharp(read_path)
+            .rotate().resize(100, 100)
+            .jpeg({ mozjpeg: true }).toBuffer()).toBeResolved();
+        });
+
+
         it('should respond with 200 -> image resized and cached successfully', (done) => {
             request(app)
                 .get('/api/images?filename=icelandwaterfall.jpg&width=200&height=200')
